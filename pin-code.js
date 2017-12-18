@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
-import { TextInput, View, Text } from 'react-native';
+import React, {Component} from 'react';
+import {PropTypes} from 'prop-types';
+import {TextInput, View, Text} from 'react-native';
 
-import { codePinStyles } from './pin-code-style';
+import {codePinStyles} from './pin-code-style';
 
 class CodePin extends Component {
     constructor(props) {
@@ -58,6 +58,8 @@ class CodePin extends Component {
                         code: new Array(this.props.number).fill(''),
                         edit: 0
                     });
+
+                    this.props.onError();
 
                     return;
                 } else {
@@ -136,11 +138,11 @@ class CodePin extends Component {
         return (
             <View style={[codePinStyles.container, containerStyle]}>
 
-              <View style={[codePinStyles.containerPin, containerPinStyle]}>
+                <View style={[codePinStyles.containerPin, containerPinStyle]}>
 
-                  {pins}
+                    {pins}
 
-              </View>
+                </View>
 
             </View>
         );
@@ -150,6 +152,7 @@ class CodePin extends Component {
 CodePin.propTypes = {
     code: PropTypes.string,
     success: PropTypes.func.isRequired,
+    onError: PropTypes.func,
     shouldValidateCode: PropTypes.bool.isRequired,
     number: PropTypes.number,
     pinStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
