@@ -119,6 +119,7 @@ class CodePin extends Component {
                     secureTextEntry={true}
                     onChangeText={text => this.handleEdit(text, id)}
                     onFocus={() => this.isFocus(id)}
+                    autoFocus={index === 0 ? true : false}
                     value={this.state.code[id] ? this.state.code[id].toString() : ''}
                     style={[codePinStyles.pin, pinStyle]}
                     returnKeyType={'done'}
