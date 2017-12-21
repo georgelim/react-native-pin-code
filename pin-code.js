@@ -49,28 +49,36 @@ class CodePin extends Component {
         if (id === this.props.number - 1) {
 
             if (this.props.shouldValidateCode) {
-                // But it's different than code
-                if (this.props.code !== newCode.join('')) {
-                    this.focus(0);
 
-                    this.setState({
-                        error: this.props.error,
-                        code: new Array(this.props.number).fill(''),
-                        edit: 0
-                    });
+                this.setState({
+                    error: '',
+                    code: newCode,
+                    edit: this.state.edit
+                });
 
-                    this.props.onError();
-
-                    return;
-                } else {
-                    this.setState({
-                        error: '',
-                        code: newCode,
-                        edit: this.state.edit
-                    });
-
-                    this.props.success(newCode);
-                }
+                this.props.onLastEdit(newCode);
+                // // But it's different than code
+                // if (this.props.code !== newCode.join('')) {
+                //     this.focus(0);
+                //
+                //     this.setState({
+                //         error: this.props.error,
+                //         code: new Array(this.props.number).fill(''),
+                //         edit: 0
+                //     });
+                //
+                //     this.props.onError();
+                //
+                //     return;
+                // } else {
+                //     this.setState({
+                //         error: '',
+                //         code: newCode,
+                //         edit: this.state.edit
+                //     });
+                //
+                //     this.props.success(newCode);
+                // }
             } else {
                 this.setState({
                     error: '',
@@ -152,7 +160,8 @@ class CodePin extends Component {
 
 CodePin.propTypes = {
     code: PropTypes.string,
-    success: PropTypes.func.isRequired,
+    success: PropTypes.func,
+    onLastEdit: PropTypes.func,
     onError: PropTypes.func,
     shouldValidateCode: PropTypes.bool.isRequired,
     number: PropTypes.number,
