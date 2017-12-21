@@ -134,6 +134,7 @@ class CodePin extends Component {
                     autoCapitalize={'sentences'}
                     autoCorrect={false}
                     {...props}
+                    maxLength={1}
                 />
             );
         }
